@@ -1,0 +1,23 @@
+version = 1
+revision = 3
+requires-python = ">=3.14"
+
+[[package]]
+name = "lemomates-2026-27"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "pybricks" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "pybricks", specifier = ">=4.0.0" }]
+
+[[package]]
+name = "pybricks"
+version = "4.0.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/4c/65/07f9e7551694c744cbe1d2424ec2692ef58983e81f448de71e61d845a0f9/pybricks-4.0.0.tar.gz", hash = "sha256:8901de69884c1982b85f3cabef647b68df6efc52470b41326ab713031b1d35d5", size = 52890, upload-time = "2026-06-08T13:16:47.72Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ea/34/82aa9e3f950aa580f4bf22e68e3f46a4f40ca2731b68920105a367f24be5/pybricks-4.0.0-py3-none-any.whl", hash = "sha256:05aec9203025e10feba755f463537dd4da489ed2ee384e65d05ac5d697c8d58b", size = 65508, upload-time = "2026-06-08T13:16:48.653Z" },
+]
