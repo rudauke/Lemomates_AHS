@@ -6,7 +6,6 @@
 # Date: 
 
 # Import of used libraries
-from typing import Literal
 
 from pybricks.hubs import PrimeHub
 from pybricks.parameters import Axis, Button, Color, Direction, Port, Side, Stop
@@ -132,7 +131,7 @@ async def MyDrive(distance, speed=STRAIGHT_SPEED, then=Stop.COAST, wait=True):
             default: True
             example: wait=True
     """
-    speed: Literal[-616, 616, 500] | Unknown = max(-616, min(616, speed))
+    speed: int | Unknown = max(-616, min(616, speed))
         
     bot.settings(speed, (STRAIGHT_ACCEL, STRAIGHT_DECEL), TURN_RATE, (TURN_ACCEL, TURN_DECEL))
     await bot.straight(distance, then=then, wait=wait)
@@ -288,12 +287,6 @@ async def Run_1():
     Realizacja misji Robot Game: 
     - Misja 
     """
-    hub.imu.settings(angular_velocity_threshold=IMU_ANG_VEL, acceleration_threshold=IMU_ACCEL)
-    # Enabling gyro
-    bot.use_gyro(True)
-    
-    # Robot wyjezdza z czerwonego obszaru startowego
-
 
     await MyDrive(250,300)
     await MyTurn(90,300);
@@ -304,65 +297,42 @@ async def Run_1():
     await MyDrive (-375,100)
 
 
-    # Disable gyro
-    bot.use_gyro(False)  
-
 
 async def Run_2():
     """
     Realizacja misji Robot Game: 
 
     """
-    hub.imu.settings(angular_velocity_threshold=IMU_ANG_VEL, acceleration_threshold=IMU_ACCEL)
-    # Enabling gyro 
-    bot.use_gyro(True)
-    
+
     await MyDrive(-720, 300)
     await MyDrive(70, 300)
     await MyTurn(-55, 300)
     await MyTurn(45, 300)
     await MyDrive(700, 300)
 
-    # Disable gyro
-    bot.use_gyro(False)  
     
 
 async def Run_3():
     """
-    Realizacja misji Robot Game: 
-
+    Description:
+ 
     """
-    hub.imu.settings(angular_velocity_threshold=IMU_ANG_VEL, acceleration_threshold=IMU_ACCEL)
-    # Enabling gyro
-    bot.use_gyro(True)
-    
 
-    # Disable gyro
-    bot.use_gyro(False)  
 
 async def Run_4():
     """
-    Realizacja misji Robot Game: 
-
+    Description:
+ 
     """
-    hub.imu.settings(angular_velocity_threshold=IMU_ANG_VEL, acceleration_threshold=IMU_ACCEL)
-    # Enabling gyro
-    bot.use_gyro(True)
-    
 
-    # Disable gyro
-    bot.use_gyro(False)  
 
 
 async def Run_5():
+    """
+    Description:
+ 
+    """
 
-    hub.imu.settings(angular_velocity_threshold=IMU_ANG_VEL, acceleration_threshold=IMU_ACCEL)
-    # Enabling gyro
-    bot.use_gyro(True)
-    
-    
-    # Disable gyro
-    bot.use_gyro(False)  
 
 
 async def Run_6():
@@ -370,150 +340,70 @@ async def Run_6():
     Description:
  
     """
-    hub.imu.settings(angular_velocity_threshold=IMU_ANG_VEL, acceleration_threshold=IMU_ACCEL)
-    # Enabling gyro
-    bot.use_gyro(True)
-
-      
-    # Disable gyro
-    bot.use_gyro(False)  
 
 
 async def Run_7():
     """
-    Realizacja misji Robot Game: 
-    
+    Description:
+ 
     """
-    #hub.imu.settings(IMU_ANG_VEL, IMU_ACCEL)
-    # Enabling gyro
-    bot.use_gyro(True)
 
-    # Disable gyro
-    bot.use_gyro(False)  
 
 
 
 async def Run_8():
-    hub.imu.settings(angular_velocity_threshold=IMU_ANG_VEL, acceleration_threshold=IMU_ACCEL)
-    # Enabling gyro
-    bot.use_gyro(True)
+    """
+    Description:
+ 
+    """
 
 
-    # Read the color and reflection
-    color =  colorSensorLeft.color()
-    reflection =  colorSensorLeft.reflection()
-    hsv =  colorSensorLeft.hsv()
-    
-    # Print the measured color and reflection.
-    print(color, "---", reflection, "---", hsv)
-
-
-    # Disable gyro
-    bot.use_gyro(False)  
 
 async def Run_9():
     """
-    Description ... 
+    Description:
+ 
     """
+
+
+
+async def run_mission(mission_func):
+    # wrap missions with hub base settings and gyro handling
     hub.imu.settings(angular_velocity_threshold=IMU_ANG_VEL, acceleration_threshold=IMU_ACCEL)
-    # Enabling gyro 
     bot.use_gyro(True)
-    
-    """
-    print("=====")
-    print("Hub Name -----------: ", hub.system.name())
-    print("Hub Ready For Use ? : ", hub.imu.ready())
-    print("Battery Voltage     : ", hub.battery.voltage())
-    print("Base Settings       : ", bot.settings())
-    print("Battery current     : ", hub.battery.current())
-    print("Charger connected   : ", hub.charger.connected())
-    print("Charger current   mA: ", hub.charger.current())
-    print("Charger status      : ", hub.charger.status())
-    print("-----")
-    e_speed = 500
-    e_time = 10000
-    #MotorA.run_time(e_speed, e_time)
-    #MotorB.run_time(e_speed, e_time)
-    #MotorC.run_time(e_speed, e_time)
-    #MotorD.run_time(e_speed, e_time)
-    #MotorE.run_time(e_speed, e_time)
-    #MotorF.run_time(e_speed, e_time)
-    await MyDrive(10000,500)
-    #await WaitForMs(500)
-    #await MyTurn(90, 100)
-    #await WaitForMs(500)
-       
-    print("Hub Name -----------: ", hub.system.name())
-    print("Hub Ready For Use ? : ", hub.imu.ready())
-    print("Battery Voltage     : ", hub.battery.voltage())
-    print("Base Settings       : ", bot.settings())
-    print("Battery current     : ", hub.battery.current())
-    print("Charger connected   : ", hub.charger.connected())
-    print("Charger current   mA: ", hub.charger.current())
-    print("Charger status      : ", hub.charger.status())
-    print("=====")
-    
-    await MyTurn(90, 616)
-    await multitask(RightArmDrive(400,300), MyDrive(250, 950))
-    await multitask(MyDrive(110, 200), RightArmDrive(-600, 300))
-    await MyCurve(-400, 90, 800) # Radius, Angle, Speed, do tyłu
-    """
-    # Disable gyro
-    bot.use_gyro(False)  
+    try:
+        await mission_func()
+    finally:
+        bot.use_gyro(False)
 
 
-hub.imu.settings(angular_velocity_threshold=IMU_ANG_VEL, acceleration_threshold=IMU_ACCEL)
-currRun = 1
+# Map menu selections to your run functions
+run_funcs = {
+    "1": Run_1, "2": Run_2, "3": Run_3, 
+    "4": Run_4, "5": Run_5, "6": Run_6, 
+    "7": Run_7, "8": Run_8, "9": Run_9
+}
+
+runs = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+curr_idx = 0
+
 while True:
-    #Checks if the device is calibrated and ready for use.
     if hub.imu.ready():
         hub.light.on(Color.GREEN)
         
-        if currRun == 1:
-            selected = hub_menu("1", "2", "3", "4", "5", "6", "7", "8", "9")
-        if currRun == 2:
-            selected = hub_menu("2", "3", "4", "5", "6", "7", "8", "9", "1")
-        if currRun == 3:
-            selected = hub_menu("3", "4", "5", "6", "7", "8", "9", "1", "2")
-        if currRun == 4:
-            selected = hub_menu("4", "5", "6", "7", "8", "9", "1", "2", "3")
-        if currRun == 5:
-            selected = hub_menu("5", "6", "7", "8", "9", "1", "2", "3", "4")
-        if currRun == 6:
-            selected = hub_menu("6", "7", "8", "9", "1", "2", "3", "4", "5")
-        if currRun == 7:
-            selected = hub_menu("7", "8", "9", "1", "2", "3", "4", "5", "6")
-        if currRun == 8:
-            selected = hub_menu("8", "9", "1", "2", "3", "4", "5", "6", "7")
-        if currRun == 9:
-            selected = hub_menu("9", "1", "2", "3", "4", "5", "6", "7", "8")
-
-        if selected == "1":
-            run_task(Run_1())
-            currRun = 2
-        if selected == "2":
-            run_task(Run_2())    
-            currRun = 3
-        if selected == "3":
-            run_task(Run_3())
-            currRun = 4
-        if selected == "4":
-            run_task(Run_4())
-            currRun = 5
-        if selected == "5":
-            run_task(Run_5())
-            currRun = 6
-        if selected == "6":
-            run_task(Run_6())
-            currRun = 9
-        if selected == "7":
-            run_task(Run_7())
-            currRun = 9
-        if selected == "8":
-            break   
-        if selected == "9":
-            break        
+        # Rotate list so the current run appears first in the menu
+        current_menu = runs[curr_idx:] + runs[:curr_idx]
+        selected = hub_menu(*current_menu)
         
+        if selected == ("9"):
+            break
+            
+        if selected in run_funcs:
+            # Automatically wrap the selected mission with gyro handling
+            run_task(run_mission(run_funcs[selected]))
+            
+            # Advance to the next run automatically
+            curr_idx = (runs.index(selected) + 1) % len(runs)
     else:
         hub.light.on(Color.RED)
     
