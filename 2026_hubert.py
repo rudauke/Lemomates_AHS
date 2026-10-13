@@ -286,21 +286,22 @@ async def MonitCurrentData():
 async def Run_1():
     """
     Realizacja misji Robot Game: 
-    - Misja 11. Artefakty Rybackie
-    - Misja 12. Operacja Ratunkowa
+    - Misja 
     """
     hub.imu.settings(angular_velocity_threshold=IMU_ANG_VEL, acceleration_threshold=IMU_ACCEL)
     # Enabling gyro
     bot.use_gyro(True)
     
     # Robot wyjezdza z czerwonego obszaru startowego
-    # Podniesienie ramienia, Jazda do Operacji Ratunkowej
 
-    await MyDrive(-700,300)
-    #await MyTurn(-90, 300)
-    await MyCurve(-55, 90, speed=STRAIGHT_SPEED/2, then=Stop.COAST, wait=True)
-    await MyCurve(75, 95, speed=STRAIGHT_SPEED/2, then=Stop.COAST, wait=True)
-    await MyDrive(750, 300)
+
+    await MyDrive(250,300)
+    await MyTurn(90,300);
+    await MyDrive(265,300)
+    await MyTurn(-45,300)
+    await MyDrive(80,150)
+    await RightArmDrive (200, 62.5)
+    await MyDrive (-375,100)
 
 
     # Disable gyro

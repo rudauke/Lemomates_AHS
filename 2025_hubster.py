@@ -17,8 +17,8 @@ from ty_extensions._internal import Unknown
 
 # Definitions of constants and their default values.
 # Default values have been determined experimentally.
-WHEEL_DIAMETER  = 81.5 # wheel diameter [mm]
-AXLE_TRACK      = 111  # distance between the wheels [mm]
+WHEEL_DIAMETER  = 62.4 # wheel diameter [mm]
+AXLE_TRACK      = 150  # distance between the wheels [mm]
 STRAIGHT_SPEED  = 500  # normal straight speed for driving [mm/s], max 855
 STRAIGHT_ACCEL  = 500  # normal acceleration [mm/s^2], max 8500
 STRAIGHT_DECEL  = 1000  # normal deceleration [mm/s^2]
@@ -78,7 +78,7 @@ async def readiness():
     print("Charger status      : ", hub.charger.status())
     #print("Right arm control   : ", arm_right_motor.control.limits())
     #print("Left arm control    : ", arm_left_motor.control.limits())
-
+    
 
 async def MyDrive(distance, speed=STRAIGHT_SPEED, then=Stop.COAST, wait=True):
     """
@@ -334,6 +334,18 @@ async def Run_3():
     hub.imu.settings(angular_velocity_threshold=IMU_ANG_VEL, acceleration_threshold=IMU_ACCEL)
     # Enabling gyro
     bot.use_gyro(True)
+    
+    await MyDrive(770, 500)
+    await RightArmDrive(500, -180)
+    await MyDrive(-60, 300)
+    await RightArmDrive(500, 180)
+    await MyTurn(-90, 500)
+    await MyDrive(100, 500)
+    await MyCurve(130, 110, 100)
+    await MyCurve(110, -60, 300)
+    await MyDrive(-250, 300)
+    await RightArmDrive(300, -220)
+    await MyDrive(-550, 300)
     
 
     # Disable gyro
